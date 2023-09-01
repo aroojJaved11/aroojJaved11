@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netflix Logo Animation</title>
+  <style>
+    body {
+      background-color:black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .logo-container {
+      position: relative;
+      width: 200px;
+      height: 100px;
+    }
+    
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color:red;
+      text-transform: uppercase;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .red-bar {
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background-color: #e50914;
+      animation: moveBar 2s ease-in-out infinite;
+    }
+    
+    @keyframes moveBar {
+      0% {
+        left: 0;
+      }
+      50% {
+        left: 160px;
+      }
+      100% {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <div class="logo">Netflix</div>
+    <div class="red-bar"></div>
+  </div>
+</body>
+</html>
