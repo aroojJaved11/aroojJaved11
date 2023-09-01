@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Booking Platform</title>
+</head>
+<body>
+  <h1>Event Booking Platform</h1>
+  
+  <form id="bookingForm">
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" name="" required><br>
+    
+    <label for="eventDate">Event Date:</label>
+    <input type="date" id="eventDate" name="" required><br>
+    
+    <label for="participantName">Your Name:</label>
+    <input type="text" id="participantName" name="" required><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="" required><br>
+    
+    <input type="submit" value="Book Now">
+  </form>
+
+  <div id="bookingConfirmation" style="display: none;">
+    <h2>Booking Confirmation</h2>
+    <p>Thank you for booking the event!</p>
+    <p>Event Name: <span id="confirmationEventName"></span></p>
+    <p>Event Date: <span id="confirmationEventDate"></span></p>
+    <p>Your Name: <span id="confirmationParticipantName"></span></p>
+    <p>Email: <span id="confirmationEmail"></span></p>
+  </div>
+
+  <script>
+    const bookingForm = document.getElementById("bookingForm");
+    const bookingConfirmation = document.getElementById("bookingConfirmation");
+    const confirmationEventName = document.getElementById("confirmationEventName");
+    const confirmationEventDate = document.getElementById("confirmationEventDate");
+    const confirmationParticipantName = document.getElementById("confirmationParticipantName");
+    const confirmationEmail = document.getElementById("confirmationEmail");
+
+    bookingForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const eventName = bookingForm.eventName.value;
+      const eventDate = bookingForm.eventDate.value;
+      const participantName = bookingForm.participantName.value;
+      const email = bookingForm.email.value;
+      
+      confirmationEventName.textContent = eventName;
+      confirmationEventDate.textContent = eventDate;
+      confirmationParticipantName.textContent = participantName;
+      confirmationEmail.textContent = email;
+      
+      bookingForm.style.display = "none";
+      bookingConfirmation.style.display = "block";
+    });
+  </script>
+</body>
+</html>
