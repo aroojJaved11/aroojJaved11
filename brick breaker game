@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brick Breaker Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border: 1px solid white;
+            overflow: hidden;
+        }
+
+        .brick {
+            width: 40px;
+            height: 20px;
+            background-color: #33cc33;
+            border-radius: 4px;
+            margin: 4px;
+            position: absolute;
+        }
+
+        #ball {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        #paddle {
+            width: 80px;
+            height: 10px;
+            background-color: white;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ball"></div>
+        <div id="paddle"></div>
+        <div class="brick" style="top: 20px; left: 30px;"></div>
+        <div class="brick" style="top: 20px; left: 100px;"></div>
+        <div class="brick" style="top: 20px; left: 170px;"></div>
+        <!-- More bricks can be added here -->
+    </div>
+
+    <script>
+        const ball = document.getElementById("ball");
+        const paddle = document.getElementById("paddle");
+        const bricks = document.querySelectorAll(".brick");
+
+        let ballX = 190;
+        let ballY = 150;
+        let ballSpeedX = 2;
+        let ballSpeedY = 2;
+
+        let paddleX = 160;
+
+        function updateBallPosition() {
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            ball.style.left = ballX + "px";
+            ball.style.top = ballY + "px";
+
+            // Ball collision with walls
+            if (ballX <= 0 || ballX >= 380) {
+                ballSpeedX = -ballSpeedX;
+            }
+            if (ballY <= 0) {
+                ballSpeedY = -ballSpeedY;
+            }
+
+            // Ball collision with paddle
+            if (
+                ballY >= 290 &&
+                ballX + 20 >= paddleX &&
+                ballX <= paddleX + 80
+            ) {
+                ballSpeedY = -ballSpeedY;
+            }
+
+            // Ball collision with bricks
+            bricks.forEach(brick => {
+                if (ballY <= brick.offsetTop + 20 &&
+                    ballY >= brick.offsetTop &&
+                    ballX + 20 >= brick.offsetLeft &&
+                    ballX <= brick.offsetLeft + 40) {
+                    ballSpeedY = -ballSpeedY;
+                    brick.style.display = "none";
+                }
+            });
+
+            requestAnimationFrame(updateBallPosition);
+        }
+
+        function movePaddle(e) {
+            const containerLeft = document.getElementById("gameContainer").offsetLeft;
+            paddleX = e.clientX - containerLeft - 40; // Subtract half of paddle width
+            paddle.style.left = paddleX + "px";
+        }
+
+        document.addEventListener("mousemove", movePaddle);
+
+        updateBallPosition();
+    </script>
+</body>
+</html>
