@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=">
+    <title>
+        Search Bar
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <style type="text/css">
+        body {
+    margin: 0;
+    padding: 0;
+    background: #99a811;
+  }
+  
+  .search-box {
+    position: absolute;
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+  }
+  
+  .search-box:hover > .search-text{
+    width: 240px;
+    padding: 0 6px;
+  }
+  
+  .search-box:hover > .search-btn{
+    background: white;
+    color: black;
+  }
+  
+  .search-btn {
+    color: #ffd000;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .search-text {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    font-weight: normal;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+  }
+    </style>
+</head>
+
+<body>
+    <div class = 'search-box'>
+      <input class = "search-text" type="text" placeholder = "Search Anything">
+    <a href="#" class = "search-btn">
+      <i class="fas fa-search"></i>
+    </a>
+    </div>
+</body>
+</html>
